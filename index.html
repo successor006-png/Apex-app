@@ -3,39 +3,26 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
-
-    <!-- PWA Meta Tags -->
-    <meta name="theme-color" content="#050508" />
+    <meta name="theme-color" content="#080809" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="APEX" />
     <meta name="mobile-web-app-capable" content="yes" />
-    <meta name="description" content="APEX — Your 20-Week Personalized Elite Training System" />
-
-    <!-- Icons -->
-    <link rel="icon" type="image/png" sizes="192x192" href="/icon-192.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <meta name="description" content="APEX — Elite Training System. Science-backed. Personally prescribed. Biologically guaranteed." />
+    <link rel="icon" type="image/svg+xml" href="/icon.svg" />
     <link rel="manifest" href="/manifest.webmanifest" />
-
-    <!-- Prevent overscroll bounce on iOS -->
     <style>
       * { -webkit-tap-highlight-color: transparent; }
-      html, body {
-        overscroll-behavior: none;
-        -webkit-overflow-scrolling: touch;
-        height: 100%;
-      }
+      html, body { overscroll-behavior: none; -webkit-overflow-scrolling: touch; height: 100%; }
       #root { height: 100%; }
-
-      /* Safe area padding for notched phones */
       body {
         padding-top: env(safe-area-inset-top);
         padding-bottom: env(safe-area-inset-bottom);
-        background: #050508;
+        background: #080809;
+        margin: 0;
       }
     </style>
-
-    <title>APEX</title>
+    <title>APEX — Elite Training</title>
   </head>
   <body>
     <div id="root"></div>

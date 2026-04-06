@@ -1,7 +1,8 @@
 {
-  "name": "apex-fitness",
-  "version": "1.0.0",
+  "name": "apex-elite-training",
+  "version": "2.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -13,7 +14,6 @@
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.2.1",
-    "vite": "^5.1.0",
-    "vite-plugin-pwa": "^0.19.2"
+    "vite": "^5.1.0"
   }
 }
