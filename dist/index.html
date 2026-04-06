@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+
+    <!-- PWA Meta Tags -->
+    <meta name="theme-color" content="#050508" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="APEX" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="description" content="APEX — Your 20-Week Personalized Elite Training System" />
+
+    <!-- Icons -->
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/icon-192-DzzSf8Iv.png" />
+    <link rel="apple-touch-icon" href="/assets/apple-touch-icon-1z8cIVeV.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+
+    <!-- Prevent overscroll bounce on iOS -->
+    <style>
+      * { -webkit-tap-highlight-color: transparent; }
+      html, body {
+        overscroll-behavior: none;
+        -webkit-overflow-scrolling: touch;
+        height: 100%;
+      }
+      #root { height: 100%; }
+
+      /* Safe area padding for notched phones */
+      body {
+        padding-top: env(safe-area-inset-top);
+        padding-bottom: env(safe-area-inset-bottom);
+        background: #050508;
+      }
+    </style>
+
+    <title>APEX</title>
+    <script type="module" crossorigin src="/assets/index-r20zDwaa.js"></script>
+  <link rel="manifest" href="/manifest.webmanifest"></head>
+  <body>
+    <div id="root"></div>
+  </body>
+</html>

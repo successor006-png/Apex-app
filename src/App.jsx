@@ -108,8 +108,64 @@ const LADDERS = {
       { level:7, name:"Marble Toe Grip", desc:"Foot-glute-core neural pathway", target:"2×3 min each side" },
       { level:8, name:"Single-Leg Hyperarch Hop", desc:"Single-leg elastic fascial loading", target:"2×60s each leg" },
       { level:9, name:"Spiral Walk", desc:"Full spiral/diagonal line integration", target:"3×3 min" },
-      { level:10, name:"Silk Reeling (Tai Chi)", desc:"Complete fascial web in continuous motion", target:"10 min continuous" },
+      { level:10, name:"Silk Reiling (Tai Chi)", desc:"Complete fascial web in continuous motion", target:"10 min continuous" },
     ]
+  },
+  martial: {
+    name: "Martial Arts Progression",
+    icon: "🥋",
+    color: T.orange,
+    levels: [
+      { level:1, name:"Shadowboxing Basics", desc:"Fundamental footwork and stance drills", target:"3×3 min" },
+      { level:2, name:"Heavy Bag Work", desc:"Power generation and combination practice", target:"3×2 min rounds" },
+      { level:3, name:"Speed Bag Drills", desc:"Hand-eye coordination and shoulder endurance", target:"3×2 min" },
+      { level:4, name:"Mitt Work Fundamentals", desc:"Accuracy and timing with partner feedback", target:"3×2 min rounds" },
+      { level:5, name:"Grappling Basics", desc:"Takedowns and positional control drills", target:"3×5 min" },
+      { level:6, name:"Combination Chains", desc:"Complex striking sequences at tempo", target:"4×2 min rounds" },
+      { level:7, name:"Sparring Light Contact", desc:"Technical sparring with controlled intensity", target:"3×3 min rounds" },
+      { level:8, name:"Grappling Submission Drills", desc:"Submission escapes and counters", target:"3×5 min" },
+      { level:9, name:"Advanced Sparring", desc:"Full-intensity technical sparring", target:"4×3 min rounds" },
+      { level:10, name:"Competition Ready", desc:"Full-contact simulation with all techniques", target:"5×3 min rounds" },
+    ]
+  }
+};
+
+// ─── EXERCISE DATABASE BY EQUIPMENT ─────────────────────────────────────────
+const EXERCISE_DB = {
+  none: {
+    push: ["Standard Push-Up", "Diamond Push-Up", "Incline Push-Up", "Explosive Push-Up", "Pike Push-Up", "Pseudo Planche Push-Up"],
+    pull: ["Dead Hang", "Scapular Pull-Up", "Negative Pull-Up", "Inverted Rows (on low bar)"],
+    legs: ["Bodyweight Squat", "Reverse Lunge", "Bulgarian Split Squat", "Pistol Squat Progression", "Jump Squats", "Single-Leg Deadlift"],
+    core: ["Plank", "Dead Bug", "Hollow Body Hold", "Hanging Knee Raise", "Mountain Climbers", "Leg Raises"],
+    martial: ["Shadowboxing", "Bodyweight Drills", "Footwork Patterns", "Stance Practice"]
+  },
+  pullup_bar: {
+    push: ["Standard Push-Up", "Diamond Push-Up", "Pseudo Planche Push-Up", "Dips (if bar allows)", "Explosive Push-Up"],
+    pull: ["Dead Hang", "Scapular Pull-Up", "Negative Pull-Up", "Standard Pull-Up", "Wide-Grip Pull-Up", "Chin-Up", "L-SIT Pull-Up", "Front Lever Rows"],
+    legs: ["Bodyweight Squat", "Reverse Lunge", "Bulgarian Split Squat", "Hanging Knee Raise", "Toes to Bar"],
+    core: ["Dead Bug", "Hollow Body Hold", "Plank", "Hanging Knee Raise", "Hanging Leg Raise", "Toes to Bar", "L-SIT (Floor)"],
+    martial: ["Shadowboxing", "Heavy Bag Work", "Speed Bag Drills"]
+  },
+  dumbbells: {
+    push: ["Dumbbell Bench Press", "Dumbbell Floor Press", "Dumbbell Shoulder Press", "Dumbbell Push-Ups", "Incline Dumbbell Press"],
+    pull: ["Dumbbell Rows", "Single-Arm Rows", "Renegade Rows", "Dumbbell Pullovers", "Farmer's Carries"],
+    legs: ["Dumbbell Goblet Squat", "Dumbbell Lunges", "Dumbbell Romanian Deadlift", "Dumbbell Step-Ups", "Single-Leg Deadlifts"],
+    core: ["Dumbbell Pullovers", "Dumbbell Woodchops", "Farmer's Carries", "Suitcase Carries", "Dumbbell Twists"],
+    martial: ["Dumbbell Shadowboxing", "Weighted Footwork", "Conditioning"]
+  },
+  barbell: {
+    push: ["Barbell Bench Press", "Incline Bench Press", "Overhead Press", "Close-Grip Bench", "Floor Press"],
+    pull: ["Barbell Rows", "Pendlay Rows", "Yates Rows", "Deadlifts", "Rack Pulls", "Barbell Curls"],
+    legs: ["Barbell Back Squat", "Front Squat", "Romanian Deadlift", "Leg Press", "Hack Squat", "Leg Curls"],
+    core: ["Weighted Planks", "Barbell Rollouts", "Landmine Rotations", "Ab Wheel Rollouts"],
+    martial: ["Barbell Complex Training", "Olympic Lift Conditioning"]
+  },
+  full_gym: {
+    push: ["Barbell Bench Press", "Incline Bench Press", "Dumbbell Press", "Machine Press", "Cable Flyes", "Overhead Press", "Weighted Dips"],
+    pull: ["Lat Pulldown", "Seated Rows", "Cable Rows", "Barbell Rows", "Deadlifts", "Assisted Pull-Ups", "Barbell Curls", "Cable Curls"],
+    legs: ["Leg Press", "Barbell Squat", "Leg Curl Machine", "Leg Extension", "Romanian Deadlift", "Hack Squat", "Smith Machine Squat"],
+    core: ["Cable Woodchops", "Machine Crunches", "Landmine Rotations", "Ab Machine", "Weighted Planks"],
+    martial: ["Heavy Bag Work", "Speed Bag", "Mitt Work", "Conditioning Equipment"]
   }
 };
 
@@ -122,6 +178,7 @@ const PHASES = [
     progressionKey:"Perfect form on all movements. Introduce fascia protocol. Build the morning ritual habit.",
     overloadMethod:"Add 1 rep per set each week. Focus on feeling the target muscle.",
     deloadWeek:4,
+    reps:"12-15", sets:3, rpe:"5-6",
   },
   {
     id:2, name:"Build", weeks:"Weeks 5–10", color:T.gold,
@@ -130,6 +187,7 @@ const PHASES = [
     progressionKey:"Increase weight or difficulty every 1–2 weeks. Move up skill ladders. Track PRs.",
     overloadMethod:"Add weight or progress to next ladder level when you hit the top of the rep range.",
     deloadWeek:10,
+    reps:"8-12", sets:4, rpe:"6-7",
   },
   {
     id:3, name:"Strength", weeks:"Weeks 11–16", color:T.orange,
@@ -138,6 +196,7 @@ const PHASES = [
     progressionKey:"Lower rep ranges, higher intensity. This is where real strength is built.",
     overloadMethod:"Work in 3–5 rep ranges on main lifts. Add weight every session if possible.",
     deloadWeek:16,
+    reps:"5-8", sets:5, rpe:"7-8",
   },
   {
     id:4, name:"Peak", weeks:"Weeks 17–20", color:T.red,
@@ -146,7 +205,8 @@ const PHASES = [
     progressionKey:"Showcase phase. Test 1RMs, demonstrate skills, push fascia work to advanced protocols.",
     overloadMethod:"Max effort on compound lifts. Advanced ladder skills. Full fascia integration.",
     deloadWeek:20,
-  },
+    reps:"3-6", sets:5, rpe:"8-9",
+  }
 ];
 
 // ─── ONBOARDING ───────────────────────────────────────────────────────────────
@@ -162,6 +222,7 @@ const QUESTIONS = [
       { v:"strength", l:"⚡ Raw Strength", s:"Compound power on the big lifts" },
       { v:"height", l:"📏 Maximize Height", s:"Posture, spine, growth protocols" },
       { v:"calisthenics", l:"🤸 Calisthenics Skills", s:"Handstands, L-SIT, front lever" },
+      { v:"martial", l:"🥋 Martial Arts", s:"Combat sports training & conditioning" },
       { v:"all", l:"🏆 Complete Athlete", s:"Physique + Strength + Fascia + Height" },
     ]
   },
@@ -354,6 +415,7 @@ function Generating({ profile, onDone }) {
   }, []);
 
   const generate = async () => {
+    const equipmentList = (profile.equipment||[]).join(", ");
     const prompt = `You are an elite athletic programmer creating a complete 20-week periodized training system.
 
 ATHLETE PROFILE:
@@ -363,9 +425,18 @@ ATHLETE PROFILE:
 - Experience: ${profile.experience}
 - Training Days/Week: ${profile.days}
 - Session Duration: ${profile.duration} min
-- Equipment: ${(profile.equipment||[]).join(", ")}
+- Equipment: ${equipmentList}
 - Weak Points: ${(profile.weaknesses||[]).join(", ")}
 - Injuries: ${profile.injuries||"None"}
+
+CRITICAL RULES:
+1. ONLY use exercises that match available equipment: ${equipmentList}
+2. NEVER suggest exercises requiring unavailable equipment
+3. If equipment is "bodyweight only", use ONLY bodyweight exercises
+4. If equipment includes "pullup_bar", you can use pull-ups, dead hangs, etc.
+5. Match exercise difficulty to ${profile.experience} level
+6. Each phase must be progressively harder
+7. Use real, proven exercise names only
 
 Create a personalized 20-week system with 4 phases. Return ONLY valid JSON:
 {
@@ -435,9 +506,7 @@ Create a personalized 20-week system with 4 phases. Return ONLY valid JSON:
   "nutritionNote": "Personalized guidance",
   "sleepNote": "Sleep guidance",
   "weeklyStructure": "Logic behind the split"
-}
-
-RULES: ${profile.days} training days per week max. Match exercises to equipment. Match difficulty to ${profile.experience} level. Each phase progressively harder than previous. Use real exercise names only.`;
+}`;
 
     try {
       const res = await fetch("https://api.anthropic.com/v1/messages", {
@@ -458,26 +527,60 @@ RULES: ${profile.days} training days per week max. Match exercises to equipment.
   const buildFallback = (p) => {
     const days = parseInt(p.days)||3;
     const dayNames = ["Monday","Wednesday","Friday","Saturday","Tuesday"].slice(0,days);
+    const equipment = p.equipment || [];
+    
+    // Get exercises based on equipment
+    const getExercises = (category) => {
+      for (let eq of equipment) {
+        if (EXERCISE_DB[eq] && EXERCISE_DB[eq][category]) {
+          return EXERCISE_DB[eq][category];
+        }
+      }
+      return EXERCISE_DB.none[category] || [];
+    };
+
     const makeSchedule = (intensity, exSets) => dayNames.map((day,i)=>({
       day, sessionName:["Pull","Push","Legs","Power","Fascia"][i%5],
       exercises: exSets[i%exSets.length]
     }));
+
     const phase1Exs = [
-      [{name:"Wide-Grip Pull-Up",sets:3,reps:"5-8",rpe:"6",progression:"Add 1 rep per set each week",note:"Perfect form only"},{name:"Stomach Vacuum",sets:3,reps:"3×30s",rpe:"5",progression:"Extend hold time by 5s weekly",note:"Golden era waist"},{name:"Dead Hang",sets:3,reps:"30s",rpe:"4",progression:"Add 5s per week",note:"Decompress the spine"}],
-      [{name:"Standard Push-Up",sets:3,reps:"10-15",rpe:"6",progression:"Add 2 reps per set each week",note:"Chest to floor"},{name:"Overhead Press",sets:3,reps:"8-10",rpe:"6",progression:"Add 2.5kg/5lbs each week",note:"Core tight throughout"},{name:"Lateral Raise",sets:3,reps:"15",rpe:"5",progression:"Add 1 rep per set each week",note:"Lead with elbows"}],
-      [{name:"Bulgarian Split Squat",sets:3,reps:"8-10",rpe:"6",progression:"Add 1 rep per set each week",note:"Front shin stays vertical"},{name:"Hollow Body Hold",sets:3,reps:"30s",rpe:"6",progression:"Add 10s per week",note:"Lower back to floor"},{name:"Cat-Cow",sets:2,reps:"2 min",rpe:"3",progression:"Add 30s each week",note:"Every spinal segment"}],
-      [{name:"Romanian Deadlift",sets:3,reps:"10",rpe:"6",progression:"Add 5kg each week",note:"Push hips back not down"},{name:"Bear Crawl",sets:3,reps:"20m",rpe:"6",progression:"Add 5m per week",note:"Hips LOW at all times"},{name:"Farmer's Walk",sets:3,reps:"20m",rpe:"6",progression:"Add 5kg each week",note:"Chest up walk fast"}],
-      [{name:"Elevated Towel Curl",sets:1,reps:"2 min/foot",rpe:"3",progression:"Add 30s per week",note:"Eyes closed at end"},{name:"Hyperarch Hop (Bilateral)",sets:2,reps:"2 min",rpe:"4",progression:"Add 30s per set each week",note:"Soft elastic hops"},{name:"Deep Lunge Hold",sets:3,reps:"60s/side",rpe:"4",progression:"Arms overhead week 2",note:"Breathe into the hip"}],
+      [
+        {name: getExercises("pull")[0] || "Dead Hang", sets:3, reps:"5-8", rpe:"6", progression:"Add 1 rep per set each week", note:"Perfect form only"},
+        {name: "Hollow Body Hold", sets:3, reps:"3×30s", rpe:"5", progression:"Extend hold time by 5s weekly", note:"Golden era waist"},
+        {name: getExercises("core")[0] || "Plank", sets:3, reps:"30s", rpe:"4", progression:"Add 5s per week", note:"Decompress the spine"}
+      ],
+      [
+        {name: getExercises("push")[0] || "Standard Push-Up", sets:3, reps:"10-15", rpe:"6", progression:"Add 2 reps per set each week", note:"Chest to floor"},
+        {name: getExercises("push")[1] || "Diamond Push-Up", sets:3, reps:"8-10", rpe:"6", progression:"Add 2 reps per set each week", note:"Core tight throughout"},
+        {name: getExercises("push")[2] || "Incline Push-Up", sets:3, reps:"15", rpe:"5", progression:"Add 1 rep per set each week", note:"Lead with chest"}
+      ],
+      [
+        {name: getExercises("legs")[0] || "Bodyweight Squat", sets:3, reps:"8-10", rpe:"6", progression:"Add 1 rep per set each week", note:"Front shin stays vertical"},
+        {name: getExercises("core")[1] || "Hollow Body Hold", sets:3, reps:"30s", rpe:"6", progression:"Add 10s per week", note:"Lower back to floor"},
+        {name: "Cat-Cow", sets:2, reps:"2 min", rpe:"3", progression:"Add 30s each week", note:"Every spinal segment"}
+      ],
+      [
+        {name: getExercises("legs")[1] || "Reverse Lunge", sets:3, reps:"10", rpe:"6", progression:"Add 5 reps each week", note:"Push hips back not down"},
+        {name: "Bear Crawl", sets:3, reps:"20m", rpe:"6", progression:"Add 5m per week", note:"Hips LOW at all times"},
+        {name: "Farmer's Walk", sets:3, reps:"20m", rpe:"6", progression:"Add 5kg each week", note:"Chest up walk fast"}
+      ],
+      [
+        {name: "Elevated Towel Curl", sets:1, reps:"2 min/foot", rpe:"3", progression:"Add 30s per week", note:"Eyes closed at end"},
+        {name: "Hyperarch Hop (Bilateral)", sets:2, reps:"2 min", rpe:"4", progression:"Add 30s per set each week", note:"Soft elastic hops"},
+        {name: "Deep Lunge Hold", sets:3, reps:"60s/side", rpe:"4", progression:"Arms overhead week 2", note:"Breathe into the hip"}
+      ],
     ];
+
     return {
       programName:`${p.name}'s 20-Week APEX System`, tagline:"Four phases. One transformation.", primaryColor:"gold",
-      analysis:`Built around your ${p.days} training days and ${p.experience} level. Progressively harder across 4 phases over 20 weeks. Every session builds on the last.`,
+      analysis:`Built around your ${p.days} training days, ${p.experience} level, and available equipment. Progressively harder across 4 phases over 20 weeks. Every session builds on the last.`,
       keyInsight:"Consistency over 20 weeks beats intensity over 4. Trust the phases.",
       phases: PHASES.map((ph,pi)=>({
         id:ph.id, name:ph.name, weeks:ph.weeks, focus:ph.focus, intensityPct:ph.intensity.split("–")[0].replace("%",""),
         weeklySchedule: makeSchedule(ph.intensityPct, phase1Exs)
       })),
-      fasciaProgression:{ phase1:["Elevated Towel Curl","Barefoot Balance"], phase2:["Elevated Towel Curl","Hyperarch Hop (Bilateral)","Standing Retracted Hold"], phase3:["Elevated Towel Curl","Hyperarch Hop (Bilateral)","Deep Lunge Hold","Marble Toe Grip"], phase4:["Elevated Towel Curl","Hyperarch Hop (Bilateral)","Single-Leg Hyperarch Hop","Spiral Walk","Silk Reeling (Tai Chi)"] },
+      fasciaProgression:{ phase1:["Elevated Towel Curl","Barefoot Balance"], phase2:["Elevated Towel Curl","Hyperarch Hop (Bilateral)","Standing Retracted Hold"], phase3:["Elevated Towel Curl","Hyperarch Hop (Bilateral)","Deep Lunge Hold","Marble Toe Grip"], phase4:["Elevated Towel Curl","Hyperarch Hop (Bilateral)","Single-Leg Hyperarch Hop","Spiral Walk","Silk Reiling (Tai Chi)"] },
       milestones:[{week:4,title:"Foundation Complete",description:"Consistent with morning ritual, form mastered on all Phase 1 lifts"},{week:8,title:"Build Midpoint",description:"Noticeable strength gains, fascia protocol feels natural"},{week:12,title:"Strength Phase",description:"PRs on all major lifts, visible physique changes"},{week:16,title:"Strength Complete",description:"Full Phase 3 completion — peak strength base built"},{week:20,title:"TRANSFORMATION COMPLETE",description:"20 weeks in. This is who you are now."}],
       morningRitual:[{name:"Elevated Towel Curl",duration:"4 min",note:"Activate the entire fascial chain"},{name:"Dead Hang",duration:"3×30s",note:"Spine decompression before the day"},{name:"Stomach Vacuum",duration:"3×30s",note:"The Golden Era waist builder"},{name:"Mountain Pose",duration:"1 min",note:"Own your full height every morning"}],
       nutritionNote:"1g protein per pound of bodyweight. Add Vitamin C to support fascia/collagen synthesis.",
@@ -521,9 +624,14 @@ function MainApp({ profile, program, onReset }) {
   const [timerSec, setTimerSec] = useState(90);
   const [timerPreset, setTimerPreset] = useState(90);
   const [timerRunning, setTimerRunning] = useState(false);
-  const [ladderLevels, setLadderLevels] = useState(() => STORE.load("ladders", { push:1, pull:1, core:1, legs:1, fascia:1 }));
+  const [ladderLevels, setLadderLevels] = useState(() => STORE.load("ladders", { push:1, pull:1, core:1, legs:1, fascia:1, martial:1 }));
   const [activeSessionDay, setActiveSessionDay] = useState(null);
   const [showWeekly, setShowWeekly] = useState(false);
+  const [selectedExercises, setSelectedExercises] = useState(() => STORE.load("selectedExercises", null));
+  const [useManualSelection, setUseManualSelection] = useState(() => STORE.load("useManualSelection", false));
+  const [addMetric, setAddMetric] = useState(false);
+  const [newWeight, setNewWeight] = useState("");
+  const [newNote, setNewNote] = useState("");
 
   const colKey = program.primaryColor || "gold";
   const col = {gold:T.gold,green:T.green,red:T.red,blue:T.blue,purple:T.purple,orange:T.orange}[colKey] || T.gold;
@@ -546,16 +654,16 @@ function MainApp({ profile, program, onReset }) {
   useEffect(()=>{ STORE.save("sets",loggedSets); },[loggedSets]);
   useEffect(()=>{ STORE.save("ladders",ladderLevels); },[ladderLevels]);
   useEffect(()=>{ STORE.save("metrics",metrics); },[metrics]);
+  useEffect(()=>{ STORE.save("selectedExercises",selectedExercises); },[selectedExercises]);
+  useEffect(()=>{ STORE.save("useManualSelection",useManualSelection); },[useManualSelection]);
 
   const advanceWeek = () => {
     const newWeek = currentWeek + 1;
     setCurrentWeek(newWeek);
-    // Auto-advance phase
     if(newWeek<=4) setCurrentPhaseId(1);
     else if(newWeek<=10) setCurrentPhaseId(2);
     else if(newWeek<=16) setCurrentPhaseId(3);
     else setCurrentPhaseId(4);
-    // Clear sets for new week
     setLoggedSets({});
     setShowWeekly(true);
   };
@@ -661,343 +769,181 @@ function MainApp({ profile, program, onReset }) {
     );
   };
 
-  // ─── VIEWS ───────────────────────────────────────────────────────────────────
-  const HomeView = () => {
-    const phase = PHASES.find(p=>p.id===currentPhaseId);
-    const pc = getPhaseColor(currentPhaseId);
-    const nextMilestone = program.milestones?.find(m=>m.week>currentWeek);
-    const weeksToMilestone = nextMilestone ? nextMilestone.week - currentWeek : 0;
+  // ─── VIEWS ─────────────────────
+  const HomeView = () => (
+    <div style={{ padding:"20px 16px" }}>
+      <div style={{ marginBottom:24 }}>
+        <div style={{ fontFamily:FM,fontSize:10,color:T.muted,letterSpacing:"0.12em",marginBottom:8 }}>WEEK {currentWeek} OF 20</div>
+        <h1 style={{ fontFamily:FB,fontSize:36,color:T.text,margin:"0 0 8px" }}>{currentPhase.name}</h1>
+        <p style={{ fontFamily:FN,fontSize:13,color:T.muted,margin:0 }}>{currentPhase.focus}</p>
+      </div>
+      <Card style={{ background:colBg,border:`1px solid ${col}40`,padding:"16px 18px",marginBottom:16 }}>
+        <div style={{ fontFamily:FM,fontSize:9,color:col,letterSpacing:"0.1em",marginBottom:6 }}>OVERALL PROGRESS</div>
+        <PBar pct={overallPct} color={col} h={6}/>
+        <div style={{ fontFamily:FN,fontSize:12,color:T.text,marginTop:8 }}>{overallPct}% Complete</div>
+      </Card>
+      <div style={{ marginBottom:16 }}>
+        <div style={{ fontFamily:FM,fontSize:10,color:T.muted,letterSpacing:"0.12em",marginBottom:10 }}>THIS PHASE</div>
+        <div style={{ display:"flex",gap:8 }}>
+          <Card style={{ flex:1,padding:"12px 14px" }}>
+            <div style={{ fontFamily:FM,fontSize:9,color:T.muted,marginBottom:4 }}>INTENSITY</div>
+            <div style={{ fontFamily:FB,fontSize:16,color:T.text }}>{currentPhase.intensity}</div>
+          </Card>
+          <Card style={{ flex:1,padding:"12px 14px" }}>
+            <div style={{ fontFamily:FM,fontSize:9,color:T.muted,marginBottom:4 }}>VOLUME</div>
+            <div style={{ fontFamily:FB,fontSize:16,color:T.text }}>{currentPhase.volume}</div>
+          </Card>
+        </div>
+      </div>
+      <div style={{ marginBottom:16 }}>
+        <div style={{ fontFamily:FM,fontSize:10,color:T.muted,letterSpacing:"0.12em",marginBottom:10 }}>KEY PRINCIPLE</div>
+        <Card style={{ padding:"12px 14px" }}>
+          <p style={{ fontFamily:FN,fontSize:13,color:T.text,lineHeight:1.6,margin:0 }}>{currentPhase.progressionKey}</p>
+        </Card>
+      </div>
+      <Btn onClick={advanceWeek} color={col} full>Advance to Week {currentWeek+1} →</Btn>
+    </div>
+  );
+
+  const PhasesView = () => (
+    <div style={{ padding:"20px 16px" }}>
+      <h1 style={{ fontFamily:FB,fontSize:28,color:T.text,margin:"0 0 20px" }}>4-Phase System</h1>
+      {program.phases?.map((ph,i)=>{
+        const phCol = getPhaseColor(ph.id);
+        const isCurrent = ph.id===currentPhaseId;
+        return (
+          <Card key={i} accent={phCol} style={{ marginBottom:12,padding:"14px 16px",background:isCurrent?`${phCol}12`:"transparent" }}>
+            <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start" }}>
+              <div style={{ flex:1 }}>
+                <div style={{ fontFamily:FM,fontSize:9,color:phCol,letterSpacing:"0.08em",marginBottom:4 }}>{ph.weeks}</div>
+                <h3 style={{ fontFamily:FB,fontSize:18,color:T.text,margin:"0 0 6px" }}>{ph.name}</h3>
+                <p style={{ fontFamily:FN,fontSize:12,color:T.muted,margin:0,lineHeight:1.5 }}>{ph.focus}</p>
+              </div>
+              {isCurrent && <div style={{ fontFamily:FM,fontSize:10,color:phCol,marginLeft:12 }}>CURRENT</div>}
+            </div>
+          </Card>
+        );
+      })}
+      {program.milestones && (
+        <div style={{ marginTop:24 }}>
+          <div style={{ fontFamily:FM,fontSize:10,color:T.muted,letterSpacing:"0.12em",marginBottom:12 }}>MILESTONES</div>
+          {program.milestones.map((m,i)=>{
+            const done = currentWeek > m.week;
+            const curr = currentWeek === m.week;
+            return (
+              <div key={i} style={{ background:T.card,border:`1px solid ${done?T.green:curr?col:T.border}`,borderLeft:`3px solid ${done?T.green:curr?col:T.border}`,borderRadius:10,padding:"14px 18px",opacity:!done&&!curr?0.5:1,marginBottom:8 }}>
+                <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center" }}>
+                  <div>
+                    <div style={{ fontFamily:FM,fontSize:10,color:done?T.green:curr?col:T.muted,letterSpacing:"0.08em",marginBottom:4 }}>WEEK {m.week}{done?" ✓":curr?" ←":""}</div>
+                    <div style={{ fontFamily:FN,fontSize:14,fontWeight:600,color:T.text,marginBottom:3 }}>{m.title}</div>
+                    <div style={{ fontFamily:FN,fontSize:12,color:T.muted }}>{m.description}</div>
+                  </div>
+                </div>
+              </div>
+            );
+          })}
+        </div>
+      )}
+    </div>
+  );
+
+  const TrainView = () => {
+    if (!currentPhase || !currentPhase.weeklySchedule) {
+      return <div style={{ padding:"20px 16px", fontFamily:FN, color:T.muted }}>No training data available</div>;
+    }
 
     return (
-      <div style={{ padding:"24px 20px 80px" }}>
-        {/* Header */}
-        <div style={{ marginBottom:24 }}>
-          <div style={{ fontFamily:FM,fontSize:10,color:col,letterSpacing:"0.12em",marginBottom:6 }}>YOUR 20-WEEK SYSTEM</div>
-          <h1 style={{ fontFamily:FB,fontSize:32,color:T.text,margin:"0 0 4px",lineHeight:1.1 }}>{program.programName}</h1>
-          <p style={{ fontFamily:FN,fontSize:12,color:T.muted,margin:0 }}>{program.tagline}</p>
-        </div>
-
-        {/* Overall Progress */}
-        <Card style={{ padding:"18px 20px",marginBottom:16 }}>
-          <div style={{ display:"flex",justifyContent:"space-between",marginBottom:8 }}>
-            <span style={{ fontFamily:FM,fontSize:11,color:T.muted }}>OVERALL PROGRESS</span>
-            <span style={{ fontFamily:FM,fontSize:14,color:col }}>Week {currentWeek} / {totalWeeks}</span>
-          </div>
-          <PBar pct={overallPct} color={col} h={6}/>
-          <div style={{ display:"flex",justifyContent:"space-between",marginTop:8 }}>
-            {PHASES.map(p=>(
-              <div key={p.id} style={{ textAlign:"center" }}>
-                <div style={{ width:10,height:10,borderRadius:"50%",background:currentPhaseId>=p.id?getPhaseColor(p.id):T.faint,margin:"0 auto 3px" }}/>
-                <div style={{ fontFamily:FM,fontSize:8,color:currentPhaseId===p.id?getPhaseColor(p.id):T.muted }}>{p.name.toUpperCase()}</div>
+      <div style={{ padding:"20px 16px" }}>
+        <h1 style={{ fontFamily:FB,fontSize:28,color:T.text,margin:"0 0 20px" }}>This Week's Training</h1>
+        {currentPhase.weeklySchedule.map((day,dayIdx)=>(
+          <div key={dayIdx} style={{ marginBottom:20 }}>
+            <div onClick={()=>setActiveSessionDay(activeSessionDay===dayIdx?null:dayIdx)} style={{ fontFamily:FB,fontSize:16,color:col,marginBottom:10,cursor:"pointer",letterSpacing:"0.02em" }}>
+              {day.day} — {day.sessionName}
+            </div>
+            {activeSessionDay===dayIdx && (
+              <div style={{ display:"flex",flexDirection:"column",gap:10 }}>
+                {day.exercises?.map((ex,exIdx)=>{
+                  const sets = ex.sets || 3;
+                  return (
+                    <Card key={exIdx} onClick={()=>setModalEx(ex)} style={{ padding:"12px 14px",cursor:"pointer" }}>
+                      <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:8 }}>
+                        <div style={{ fontFamily:FN,fontSize:14,fontWeight:600,color:T.text }}>{ex.name}</div>
+                        <div style={{ display:"flex",gap:6 }}>
+                          {Array.from({length:sets}).map((_,setIdx)=>{
+                            const key=`${dayIdx}-${exIdx}-${setIdx}`;
+                            const done=loggedSets[key];
+                            return (
+                              <div key={setIdx} onClick={e=>{e.stopPropagation();toggleSet(dayIdx,exIdx,setIdx);}} style={{ width:24,height:24,borderRadius:4,background:done?col:T.card,border:`1px solid ${done?col:T.border}`,display:"flex",alignItems:"center",justifyContent:"center",cursor:"pointer",fontFamily:FM,fontSize:10,color:done?T.bg:T.muted }}>
+                                {setIdx+1}
+                              </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                      <div style={{ display:"flex",gap:8,flexWrap:"wrap" }}>
+                        {ex.reps && <Tag color={col}>{ex.reps}</Tag>}
+                        {ex.rpe && <Tag color={T.green}>RPE {ex.rpe}</Tag>}
+                      </div>
+                    </Card>
+                  );
+                })}
               </div>
-            ))}
+            )}
           </div>
-        </Card>
-
-        {/* Current Phase */}
-        <Card style={{ padding:"18px 20px",marginBottom:14 }} accent={pc}>
-          <div style={{ fontFamily:FM,fontSize:10,color:pc,letterSpacing:"0.1em",marginBottom:6 }}>CURRENT PHASE — {phase?.id}/{PHASES.length}</div>
-          <div style={{ fontFamily:FB,fontSize:22,color:T.text,marginBottom:4 }}>Phase {phase?.id}: {phase?.name}</div>
-          <div style={{ fontFamily:FN,fontSize:12,color:T.muted,marginBottom:10 }}>{phase?.weeks} · {phase?.focus}</div>
-          <div style={{ display:"flex",gap:10 }}>
-            <div style={{ flex:1,background:T.faint,borderRadius:6,padding:"8px 12px",textAlign:"center" }}>
-              <div style={{ fontFamily:FM,fontSize:16,color:pc }}>{phase?.intensityPct}%</div>
-              <div style={{ fontFamily:FN,fontSize:9,color:T.muted }}>INTENSITY</div>
-            </div>
-            <div style={{ flex:1,background:T.faint,borderRadius:6,padding:"8px 12px",textAlign:"center" }}>
-              <div style={{ fontFamily:FM,fontSize:16,color:T.green }}>{weeksToMilestone}w</div>
-              <div style={{ fontFamily:FN,fontSize:9,color:T.muted }}>TO MILESTONE</div>
-            </div>
-          </div>
-        </Card>
-
-        {/* Next Milestone */}
-        {nextMilestone && (
-          <Card style={{ padding:"14px 18px",marginBottom:14 }} accent={T.purple}>
-            <div style={{ fontFamily:FM,fontSize:9,color:T.purple,letterSpacing:"0.1em",marginBottom:4 }}>NEXT MILESTONE — WEEK {nextMilestone.week}</div>
-            <div style={{ fontFamily:FN,fontSize:14,fontWeight:600,color:T.text,marginBottom:4 }}>{nextMilestone.title}</div>
-            <div style={{ fontFamily:FN,fontSize:12,color:T.muted }}>{nextMilestone.description}</div>
-          </Card>
-        )}
-
-        {/* Key Insight */}
-        <Card style={{ padding:"14px 18px",marginBottom:16 }} accent={T.green}>
-          <div style={{ fontFamily:FM,fontSize:9,color:T.green,letterSpacing:"0.1em",marginBottom:4 }}>🔑 YOUR KEY PRINCIPLE</div>
-          <p style={{ fontFamily:FN,fontSize:13,color:T.text,lineHeight:1.7,margin:0 }}>{program.keyInsight}</p>
-        </Card>
-
-        {/* This Week Sessions */}
-        <div style={{ fontFamily:FM,fontSize:10,color:T.muted,letterSpacing:"0.12em",marginBottom:10 }}>THIS WEEK'S SESSIONS</div>
-        <div style={{ display:"flex",flexDirection:"column",gap:8,marginBottom:20 }}>
-          {currentPhase?.weeklySchedule?.map((sess,i)=>(
-            <div key={i} onClick={()=>{setActiveSessionDay(i);setView("train");}} style={{ background:T.card,border:`1px solid ${T.border}`,borderLeft:`3px solid ${col}`,borderRadius:10,padding:"14px 18px",cursor:"pointer" }}>
-              <div style={{ display:"flex",justifyContent:"space-between" }}>
-                <div>
-                  <div style={{ fontFamily:FM,fontSize:10,color:col,marginBottom:4 }}>{sess.day?.toUpperCase()}</div>
-                  <div style={{ fontFamily:FN,fontSize:14,fontWeight:600,color:T.text }}>{sess.sessionName}</div>
-                  <div style={{ fontFamily:FN,fontSize:11,color:T.muted,marginTop:2 }}>{sess.exercises?.length||0} exercises</div>
-                </div>
-                <span style={{ color:T.muted,fontSize:18 }}>→</span>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Complete Week Button */}
-        {currentWeek < totalWeeks && (
-          <Btn onClick={advanceWeek} color={col} full>Complete Week {currentWeek} →</Btn>
-        )}
-        {currentWeek >= totalWeeks && (
-          <div style={{ background:T.goldBg,border:`1px solid ${T.gold}`,borderRadius:12,padding:"20px",textAlign:"center" }}>
-            <div style={{ fontFamily:FB,fontSize:28,color:T.gold }}>20 WEEKS DONE 🏆</div>
-            <div style={{ fontFamily:FN,fontSize:13,color:T.muted,marginTop:8 }}>You completed the full system. This is who you are now.</div>
-          </div>
-        )}
+        ))}
+        <Btn onClick={()=>setShowTimer(true)} color={col} full>Start Rest Timer</Btn>
       </div>
     );
   };
 
-  const PhasesView = () => (
-    <div style={{ padding:"24px 20px 80px" }}>
-      <div style={{ fontFamily:FM,fontSize:10,color:col,letterSpacing:"0.12em",marginBottom:6 }}>20-WEEK ROADMAP</div>
-      <h1 style={{ fontFamily:FB,fontSize:32,color:T.text,margin:"0 0 20px" }}>All Phases</h1>
-      {PHASES.map(ph=>{
-        const pc=getPhaseColor(ph.id);
-        const isActive=ph.id===currentPhaseId;
-        const isDone=ph.id<currentPhaseId;
-        const phData=program.phases?.find(p=>p.id===ph.id);
+  const LaddersView = () => (
+    <div style={{ padding:"20px 16px" }}>
+      <h1 style={{ fontFamily:FB,fontSize:28,color:T.text,margin:"0 0 20px" }}>Skill Ladders</h1>
+      {Object.entries(LADDERS).map(([key,ladder])=>{
+        const level = ladderLevels[key] || 1;
+        const currentLevel = ladder.levels.find(l=>l.level===level);
+        const nextLevel = ladder.levels.find(l=>l.level===level+1);
         return (
-          <Card key={ph.id} style={{ padding:"20px",marginBottom:14, opacity:!isActive&&!isDone?0.6:1 }} accent={isActive?pc:isDone?T.green:T.border}>
-            <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:10 }}>
-              <div style={{ display:"flex",gap:10,alignItems:"center" }}>
-                {isDone&&<span style={{ color:T.green,fontSize:18 }}>✓</span>}
-                {isActive&&<div style={{ width:10,height:10,borderRadius:"50%",background:pc,boxShadow:`0 0 8px ${pc}` }}/>}
-                <div>
-                  <div style={{ fontFamily:FM,fontSize:10,color:isActive?pc:isDone?T.green:T.muted,letterSpacing:"0.1em" }}>{ph.weeks}</div>
-                  <div style={{ fontFamily:FB,fontSize:20,color:T.text,letterSpacing:"0.02em" }}>Phase {ph.id}: {ph.name}</div>
-                </div>
+          <Card key={key} accent={ladder.color} style={{ marginBottom:16,padding:"14px 16px" }}>
+            <div style={{ display:"flex",alignItems:"center",gap:10,marginBottom:12 }}>
+              <span style={{ fontSize:24 }}>{ladder.icon}</span>
+              <div style={{ flex:1 }}>
+                <h3 style={{ fontFamily:FB,fontSize:16,color:T.text,margin:0 }}>{ladder.name}</h3>
+                <div style={{ fontFamily:FM,fontSize:10,color:ladder.color }}>Level {level}/10</div>
               </div>
-              <div style={{ fontFamily:FM,fontSize:18,color:isActive?pc:isDone?T.green:T.muted }}>{ph.intensity||phData?.intensityPct+"%"}</div>
             </div>
-            <p style={{ fontFamily:FN,fontSize:12,color:T.muted,margin:"0 0 10px",lineHeight:1.6 }}>{ph.focus || phData?.focus}</p>
-            <div style={{ background:T.faint,borderRadius:6,padding:"10px 12px" }}>
-              <div style={{ fontFamily:FM,fontSize:9,color:T.muted,letterSpacing:"0.1em",marginBottom:4 }}>PROGRESSION METHOD</div>
-              <div style={{ fontFamily:FN,fontSize:12,color:T.text,lineHeight:1.5 }}>{ph.overloadMethod}</div>
-            </div>
-            {isActive&&phData?.weeklySchedule && (
-              <div style={{ marginTop:14 }}>
-                <div style={{ fontFamily:FM,fontSize:9,color:pc,letterSpacing:"0.1em",marginBottom:8 }}>THIS PHASE SESSIONS</div>
-                {phData.weeklySchedule.map((sess,i)=>(
-                  <div key={i} style={{ display:"flex",justifyContent:"space-between",padding:"8px 0",borderBottom:i<phData.weeklySchedule.length-1?`1px solid ${T.border}`:"none" }}>
-                    <span style={{ fontFamily:FM,fontSize:11,color:pc }}>{sess.day}</span>
-                    <span style={{ fontFamily:FN,fontSize:12,color:T.muted }}>{sess.sessionName}</span>
-                  </div>
-                ))}
+            <PBar pct={(level/10)*100} color={ladder.color}/>
+            {currentLevel && (
+              <div onClick={()=>setModalEx(currentLevel)} style={{ background:T.card,border:`1px solid ${T.border}`,borderRadius:8,padding:"10px 12px",marginTop:10,cursor:"pointer" }}>
+                <div style={{ fontFamily:FM,fontSize:9,color:T.muted,marginBottom:4 }}>CURRENT LEVEL</div>
+                <div style={{ fontFamily:FN,fontSize:13,fontWeight:600,color:T.text }}>{currentLevel.name}</div>
+                <div style={{ fontFamily:FM,fontSize:10,color:T.muted,marginTop:4 }}>{currentLevel.target}</div>
               </div>
             )}
+            {nextLevel && (
+              <div style={{ background:`${ladder.color}12`,border:`1px solid ${ladder.color}30`,borderRadius:8,padding:"10px 12px",marginTop:8 }}>
+                <div style={{ fontFamily:FM,fontSize:9,color:ladder.color,marginBottom:4 }}>NEXT LEVEL</div>
+                <div style={{ fontFamily:FN,fontSize:13,fontWeight:600,color:T.text }}>{nextLevel.name}</div>
+              </div>
+            )}
+            <Btn onClick={()=>setLadderLevels(l=>({...l,[key]:Math.min(10,level+1)}))} color={ladder.color} small full style={{ marginTop:10 }}>Progress →</Btn>
           </Card>
         );
       })}
     </div>
   );
 
-  const TrainView = () => {
-    const [selDay, setSelDay] = useState(activeSessionDay);
-    const sess = selDay!==null ? currentPhase?.weeklySchedule?.[selDay] : null;
-
-    if(selDay===null||!sess) {
-      return (
-        <div style={{ padding:"24px 20px 80px" }}>
-          <div style={{ fontFamily:FM,fontSize:10,color:col,letterSpacing:"0.12em",marginBottom:6 }}>PHASE {currentPhaseId} — WEEK {currentWeek}</div>
-          <h1 style={{ fontFamily:FB,fontSize:32,color:T.text,margin:"0 0 20px" }}>Train</h1>
-          <div style={{ display:"flex",flexDirection:"column",gap:10 }}>
-            {currentPhase?.weeklySchedule?.map((s,i)=>{
-              const total=s.exercises?.reduce((a,ex)=>a+Number(ex.sets||3),0)||0;
-              const done=s.exercises?.reduce((a,ex,ei)=>a+Array.from({length:Number(ex.sets||3)},(_,si)=>loggedSets[`${i}-${ei}-${si}`]?1:0).reduce((x,y)=>x+y,0),0)||0;
-              const pct=total>0?Math.round((done/total)*100):0;
-              return (
-                <Card key={i} style={{ padding:"16px 18px" }} accent={pct===100?T.green:col} onClick={()=>setSelDay(i)}>
-                  <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:8 }}>
-                    <div>
-                      <div style={{ fontFamily:FM,fontSize:10,color:pct===100?T.green:col,marginBottom:4 }}>{s.day?.toUpperCase()}</div>
-                      <div style={{ fontFamily:FN,fontSize:14,fontWeight:600,color:T.text }}>{s.sessionName}</div>
-                    </div>
-                    {pct===100?<span style={{ fontSize:20,color:T.green }}>✓</span>:<span style={{ fontFamily:FM,fontSize:12,color:T.muted }}>{pct}%</span>}
-                  </div>
-                  <PBar pct={pct} color={pct===100?T.green:col}/>
-                </Card>
-              );
-            })}
-          </div>
-        </div>
-      );
-    }
-
-    const exercises=sess.exercises||[];
-    const totalSets=exercises.reduce((a,ex)=>a+Number(ex.sets||3),0);
-    const doneSets=exercises.reduce((a,ex,ei)=>a+Array.from({length:Number(ex.sets||3)},(_,si)=>loggedSets[`${selDay}-${ei}-${si}`]?1:0).reduce((x,y)=>x+y,0),0);
-    const pct=totalSets>0?Math.round((doneSets/totalSets)*100):0;
-
-    return (
-      <div style={{ padding:"20px 20px 80px" }}>
-        {showTimer&&<Timer/>}
-        <button onClick={()=>{setSelDay(null);setActiveSessionDay(null);}} style={{ background:"none",border:"none",color:T.muted,cursor:"pointer",fontFamily:FN,fontSize:12,marginBottom:14,padding:0 }}>← Sessions</button>
-        <div style={{ fontFamily:FM,fontSize:10,color:col,marginBottom:4 }}>PHASE {currentPhaseId} · WEEK {currentWeek} · {sess.day?.toUpperCase()}</div>
-        <h2 style={{ fontFamily:FB,fontSize:28,color:T.text,margin:"0 0 12px",letterSpacing:"0.02em" }}>{sess.sessionName}</h2>
-        <div style={{ display:"flex",justifyContent:"space-between",marginBottom:6 }}>
-          <span style={{ fontFamily:FN,fontSize:11,color:T.muted }}>{doneSets}/{totalSets} sets</span>
-          <span style={{ fontFamily:FM,fontSize:11,color:pct===100?T.green:col }}>{pct}%</span>
-        </div>
-        <PBar pct={pct} color={pct===100?T.green:col}/>
-        <button onClick={()=>setShowTimer(!showTimer)} style={{ width:"100%",margin:"12px 0",padding:"10px 0",background:T.goldBg,border:`1px solid ${T.gold}40`,borderRadius:8,color:T.gold,fontFamily:FN,fontSize:12,fontWeight:600,cursor:"pointer" }}>⏱ Rest Timer</button>
-        <div style={{ display:"flex",flexDirection:"column",gap:12 }}>
-          {exercises.map((ex,ei)=>{
-            const numSets=Number(ex.sets||3);
-            const doneEx=Array.from({length:numSets},(_,si)=>loggedSets[`${selDay}-${ei}-${si}`]?1:0).reduce((x,y)=>x+y,0);
-            const allDone=doneEx===numSets;
-            return (
-              <div key={ei} style={{ background:T.card,border:`1px solid ${allDone?T.green:T.border}`,borderRadius:10,padding:"14px 16px" }}>
-                <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10 }}>
-                  <div style={{ cursor:"pointer" }} onClick={()=>setModalEx(ex)}>
-                    <div style={{ fontFamily:FN,fontSize:14,fontWeight:600,color:allDone?T.green:T.text,textDecoration:allDone?"line-through":"none",marginBottom:3 }}>{ex.name}</div>
-                    <div style={{ fontFamily:FM,fontSize:11,color:T.muted }}>{ex.reps} {ex.rpe?`· RPE ${ex.rpe}`:""}</div>
-                    {ex.note&&<div style={{ fontFamily:FN,fontSize:11,color:col,marginTop:4 }}>{ex.note}</div>}
-                  </div>
-                  <span style={{ fontFamily:FM,fontSize:11,color:allDone?T.green:T.muted,padding:"2px 8px",background:T.panel,borderRadius:5,flexShrink:0 }}>{doneEx}/{numSets}</span>
-                </div>
-                <div style={{ display:"flex",gap:8,flexWrap:"wrap" }}>
-                  {Array.from({length:numSets},(_,si)=>{
-                    const checked=!!loggedSets[`${selDay}-${ei}-${si}`];
-                    return (
-                      <button key={si} onClick={()=>toggleSet(selDay,ei,si)} style={{ width:40,height:40,borderRadius:"50%",border:`2px solid ${checked?T.green:T.border}`,background:checked?T.greenBg:"transparent",color:checked?T.green:T.muted,cursor:"pointer",fontFamily:FM,fontSize:12,fontWeight:700,transition:"all 0.15s" }}>
-                        {checked?"✓":si+1}
-                      </button>
-                    );
-                  })}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-        {pct>=100&&(
-          <div style={{ marginTop:16,padding:"18px",background:T.greenBg,border:`1px solid ${T.green}`,borderRadius:10,textAlign:"center" }}>
-            <div style={{ fontFamily:FB,fontSize:22,color:T.green }}>SESSION DONE 🏆</div>
-            <div style={{ fontFamily:FN,fontSize:12,color:T.muted,marginTop:4 }}>Sleep before 10PM. Fascia remodels tonight.</div>
-          </div>
-        )}
-      </div>
-    );
-  };
-
-  const LaddersView = () => {
-    const [activeLadder, setActiveLadder] = useState(null);
-    const ladderKeys = Object.keys(LADDERS);
-
-    if(activeLadder) {
-      const ladder = LADDERS[activeLadder];
-      const myLevel = ladderLevels[activeLadder]||1;
-      return (
-        <div style={{ padding:"24px 20px 80px" }}>
-          <button onClick={()=>setActiveLadder(null)} style={{ background:"none",border:"none",color:T.muted,cursor:"pointer",fontFamily:FN,fontSize:12,marginBottom:14,padding:0 }}>← All Ladders</button>
-          <div style={{ fontFamily:FM,fontSize:10,color:ladder.color,letterSpacing:"0.12em",marginBottom:6 }}>{ladder.icon} SKILL LADDER</div>
-          <h1 style={{ fontFamily:FB,fontSize:30,color:T.text,margin:"0 0 6px" }}>{ladder.name}</h1>
-          <p style={{ fontFamily:FN,fontSize:12,color:T.muted,marginBottom:20 }}>Current level: {myLevel}/10</p>
-          <PBar pct={(myLevel/10)*100} color={ladder.color} h={6}/>
-          <div style={{ marginTop:20,display:"flex",flexDirection:"column",gap:10 }}>
-            {ladder.levels.map((lv,i)=>{
-              const done=lv.level<myLevel;
-              const current=lv.level===myLevel;
-              const locked=lv.level>myLevel;
-              return (
-                <div key={i} onClick={()=>current&&setModalEx({name:lv.name,description:lv.desc,note:lv.target})} style={{ background:current?`${ladder.color}10`:T.card,border:`1.5px solid ${current?ladder.color:done?T.green:T.border}`,borderRadius:10,padding:"14px 16px",cursor:current?"pointer":"default",opacity:locked?0.4:1 }}>
-                  <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center" }}>
-                    <div style={{ display:"flex",gap:12,alignItems:"center" }}>
-                      <div style={{ width:28,height:28,borderRadius:"50%",background:done?T.green:current?ladder.color:T.faint,display:"flex",alignItems:"center",justifyContent:"center",flexShrink:0 }}>
-                        {done?<span style={{ color:"#000",fontSize:12,fontWeight:800 }}>✓</span>:<span style={{ fontFamily:FM,fontSize:11,color:done?"#000":current?"#000":T.muted,fontWeight:700 }}>{lv.level}</span>}
-                      </div>
-                      <div>
-                        <div style={{ fontFamily:FN,fontSize:13,fontWeight:600,color:current?ladder.color:done?T.green:T.text }}>{lv.name}</div>
-                        <div style={{ fontFamily:FM,fontSize:10,color:T.muted,marginTop:2 }}>{lv.target}</div>
-                      </div>
-                    </div>
-                    {current&&<Tag color={ladder.color}>CURRENT</Tag>}
-                  </div>
-                  {current&&(
-                    <div style={{ marginTop:10,paddingTop:10,borderTop:`1px solid ${T.border}` }}>
-                      <div style={{ fontFamily:FN,fontSize:12,color:T.muted,marginBottom:8 }}>{lv.desc}</div>
-                      <div style={{ display:"flex",gap:8 }}>
-                        <Btn onClick={e=>{e.stopPropagation();setLadderLevels(p=>({...p,[activeLadder]:Math.max(1,myLevel-1)}));}} color={T.muted} small ghost>← Step Back</Btn>
-                        {myLevel<10&&<Btn onClick={e=>{e.stopPropagation();setLadderLevels(p=>({...p,[activeLadder]:myLevel+1}));}} color={ladder.color} small>Advance Level →</Btn>}
-                      </div>
-                    </div>
-                  )}
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      );
-    }
-
-    return (
-      <div style={{ padding:"24px 20px 80px" }}>
-        <div style={{ fontFamily:FM,fontSize:10,color:col,letterSpacing:"0.12em",marginBottom:6 }}>SKILL DEVELOPMENT</div>
-        <h1 style={{ fontFamily:FB,fontSize:32,color:T.text,margin:"0 0 8px" }}>Progression Ladders</h1>
-        <p style={{ fontFamily:FN,fontSize:13,color:T.muted,marginBottom:20,lineHeight:1.6 }}>Every major movement pattern has 10 levels. Advance when you hit the target. This is your path to elite.</p>
-        <div style={{ display:"flex",flexDirection:"column",gap:12 }}>
-          {ladderKeys.map(key=>{
-            const ladder=LADDERS[key];
-            const lvl=ladderLevels[key]||1;
-            const currentLv=ladder.levels[lvl-1];
-            return (
-              <Card key={key} style={{ padding:"18px 20px" }} accent={ladder.color} onClick={()=>setActiveLadder(key)}>
-                <div style={{ display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:10 }}>
-                  <div>
-                    <div style={{ fontFamily:FM,fontSize:10,color:ladder.color,letterSpacing:"0.1em",marginBottom:4 }}>{ladder.icon} {ladder.name.toUpperCase()}</div>
-                    <div style={{ fontFamily:FN,fontSize:14,fontWeight:600,color:T.text }}>{currentLv?.name}</div>
-                    <div style={{ fontFamily:FN,fontSize:11,color:T.muted,marginTop:2 }}>{currentLv?.target}</div>
-                  </div>
-                  <div style={{ textAlign:"center" }}>
-                    <div style={{ fontFamily:FB,fontSize:28,color:ladder.color }}>{lvl}</div>
-                    <div style={{ fontFamily:FM,fontSize:9,color:T.muted }}>/10</div>
-                  </div>
-                </div>
-                <PBar pct={(lvl/10)*100} color={ladder.color} h={4}/>
-              </Card>
-            );
-          })}
-        </div>
-      </div>
-    );
-  };
-
   const ProgressView = () => {
-    const [addMetric, setAddMetric] = useState(false);
-    const [newWeight, setNewWeight] = useState("");
-    const [newNote, setNewNote] = useState("");
-    const milestones = program.milestones||[];
-
     return (
-      <div style={{ padding:"24px 20px 80px" }}>
-        <div style={{ fontFamily:FM,fontSize:10,color:col,letterSpacing:"0.12em",marginBottom:6 }}>TRACKING</div>
-        <h1 style={{ fontFamily:FB,fontSize:32,color:T.text,margin:"0 0 20px" }}>Your Progress</h1>
-
-        {/* Journey Stats */}
-        <div style={{ display:"grid",gridTemplateColumns:"repeat(2,1fr)",gap:10,marginBottom:20 }}>
-          {[{l:"Current Week",v:currentWeek,c:col},{l:"Phase",v:PHASES.find(p=>p.id===currentPhaseId)?.name,c:getPhaseColor(currentPhaseId)},{l:"Overall",v:`${overallPct}%`,c:T.green},{l:"Weeks Left",v:Math.max(0,totalWeeks-currentWeek),c:T.purple}].map((s,i)=>(
-            <Card key={i} style={{ padding:"14px 16px" }}>
-              <div style={{ fontFamily:FB,fontSize:26,color:s.c }}>{s.v}</div>
-              <div style={{ fontFamily:FN,fontSize:11,color:T.muted,marginTop:2 }}>{s.l}</div>
-            </Card>
-          ))}
-        </div>
+      <div style={{ padding:"20px 16px" }}>
+        <h1 style={{ fontFamily:FB,fontSize:28,color:T.text,margin:"0 0 20px" }}>Progress Tracking</h1>
 
         {/* Milestones */}
-        <div style={{ fontFamily:FM,fontSize:10,color:T.muted,letterSpacing:"0.12em",marginBottom:12 }}>MILESTONES</div>
-        <div style={{ display:"flex",flexDirection:"column",gap:8,marginBottom:20 }}>
-          {milestones.map((m,i)=>{
-            const done=currentWeek>m.week;
-            const curr=currentWeek<=m.week&&(i===0||currentWeek>milestones[i-1].week);
+        <div style={{ marginBottom:24 }}>
+          <div style={{ fontFamily:FM,fontSize:10,color:T.muted,letterSpacing:"0.12em",marginBottom:12 }}>MILESTONES</div>
+          {program.milestones?.map((m,i)=>{
+            const done = currentWeek > m.week;
+            const curr = currentWeek === m.week;
             return (
               <div key={i} style={{ background:T.card,border:`1px solid ${done?T.green:curr?col:T.border}`,borderLeft:`3px solid ${done?T.green:curr?col:T.border}`,borderRadius:10,padding:"14px 18px",opacity:!done&&!curr?0.5:1 }}>
                 <div style={{ display:"flex",justifyContent:"space-between",alignItems:"center" }}>
@@ -1043,11 +989,58 @@ function MainApp({ profile, program, onReset }) {
     );
   };
 
+  const ExerciseListView = () => {
+    const equipment = profile.equipment || [];
+    const categories = ["push", "pull", "legs", "core", "martial"];
+    
+    const getAvailableExercises = (category) => {
+      const exercises = new Set();
+      for (let eq of equipment) {
+        if (EXERCISE_DB[eq] && EXERCISE_DB[eq][category]) {
+          EXERCISE_DB[eq][category].forEach(ex => exercises.add(ex));
+        }
+      }
+      return Array.from(exercises).sort();
+    };
+
+    return (
+      <div style={{ padding:"20px 16px" }}>
+        <h1 style={{ fontFamily:FB,fontSize:28,color:T.text,margin:"0 0 8px" }}>Available Exercises</h1>
+        <p style={{ fontFamily:FN,fontSize:13,color:T.muted,margin:"0 0 20px" }}>Based on your equipment: {equipment.map(e=>e.replace(/_/g," ")).join(", ")}</p>
+        
+        {categories.map(cat=>{
+          const exs = getAvailableExercises(cat);
+          const catColor = {push:T.gold,pull:T.green,legs:T.blue,core:T.red,martial:T.orange}[cat];
+          const catName = {push:"Push",pull:"Pull",legs:"Legs",core:"Core",martial:"Martial Arts"}[cat];
+          const catIcon = {push:"💪",pull:"🔱",legs:"🦵",core:"🔥",martial:"🥋"}[cat];
+          
+          return (
+            <div key={cat} style={{ marginBottom:24 }}>
+              <div style={{ display:"flex",alignItems:"center",gap:8,marginBottom:12 }}>
+                <span style={{ fontSize:20 }}>{catIcon}</span>
+                <h2 style={{ fontFamily:FB,fontSize:18,color:catColor,margin:0,letterSpacing:"0.02em" }}>{catName}</h2>
+                <span style={{ fontFamily:FM,fontSize:10,color:T.muted }}>{exs.length} exercises</span>
+              </div>
+              <div style={{ display:"flex",flexDirection:"column",gap:8 }}>
+                {exs.map((ex,i)=>(
+                  <Card key={i} style={{ padding:"12px 14px",cursor:"pointer" }} onClick={()=>setModalEx({name:ex,note:"This exercise is available for your current equipment setup."})}>
+                    <div style={{ fontFamily:FN,fontSize:13,fontWeight:500,color:T.text }}>{ex}</div>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+    );
+  };
+
   const nav = [
     {id:"home",l:"Home",ic:"⚡"},
     {id:"phases",l:"Phases",ic:"◈"},
     {id:"train",l:"Train",ic:"✦"},
     {id:"ladders",l:"Ladder",ic:"△"},
+    {id:"exercises",l:"Exercises",ic:"📋"},
     {id:"progress",l:"Progress",ic:"◉"},
   ];
 
@@ -1055,12 +1048,14 @@ function MainApp({ profile, program, onReset }) {
     <div style={{ background:T.bg,minHeight:"100vh",color:T.text,fontFamily:FN }}>
       {modalEx&&<ExModal/>}
       {showWeekly&&<WeeklyCheckIn/>}
+      {showTimer&&<Timer/>}
       <style>{`*{box-sizing:border-box;}::-webkit-scrollbar{width:2px;}::-webkit-scrollbar-thumb{background:${T.faint};}input,textarea{outline:none;}input::placeholder,textarea::placeholder{color:${T.faint};}`}</style>
       <div style={{ paddingBottom:68 }}>
         {view==="home"&&<HomeView/>}
         {view==="phases"&&<PhasesView/>}
         {view==="train"&&<TrainView/>}
         {view==="ladders"&&<LaddersView/>}
+        {view==="exercises"&&<ExerciseListView/>}
         {view==="progress"&&<ProgressView/>}
       </div>
       <nav style={{ position:"fixed",bottom:0,left:0,right:0,height:64,background:T.panel,borderTop:`1px solid ${T.border}`,display:"flex",zIndex:300 }}>
@@ -1098,7 +1093,7 @@ export default function App() {
     STORE.save("appPhase","app");
   };
   const handleReset = () => {
-    ["appPhase","profile","program","week","phase","sets","ladders","metrics"].forEach(k=>{ try{localStorage.removeItem(`apex_${k}`);}catch(e){} });
+    ["appPhase","profile","program","week","phase","sets","ladders","metrics","selectedExercises","useManualSelection"].forEach(k=>{ try{localStorage.removeItem(`apex_${k}`);}catch(e){} });
     setPhase("onboard"); setProfile(null); setProgram(null);
   };
 
