@@ -127,6 +127,40 @@ const LADDERS = {
       { level:9, name:"Advanced Sparring", desc:"Full-intensity technical sparring", target:"4×3 min rounds" },
       { level:10, name:"Competition Ready", desc:"Full-contact simulation with all techniques", target:"5×3 min rounds" },
     ]
+  },
+  height: {
+    name: "Height Growth Protocol",
+    icon: "📏",
+    color: T.blue,
+    levels: [
+      { level:1, name:"Hanging Decompression", desc:"Spinal decompression — reduce daily compression", target:"3×30s, 5×/week" },
+      { level:2, name:"Cobra Stretch", desc:"Spinal flexibility and anterior chain opening", target:"3×20s, 2×/day" },
+      { level:3, name:"Downward Dog", desc:"Full-body spinal tension relief and inversion", target:"3×20s, 2×/day" },
+      { level:4, name:"Masai Jumps", desc:"Create micro-fractures in shin bones via plyometrics", target:"10×100 jumps, 5 days" },
+      { level:5, name:"Sprinting Intervals", desc:"Explosive movement to boost HGH 400%", target:"5×20s, 3-4×/week" },
+      { level:6, name:"Cycling (High Seat)", desc:"Mechanical stress for vertical leg bone adaptation", target:"30-60 min, 3×/week" },
+      { level:7, name:"Ankle Weight Stretch", desc:"Vertical bone stretching during sleep recovery", target:"Wear 2-3kg, 6-8 hrs" },
+      { level:8, name:"Standing Reach Hold", desc:"Full-body elongation and calf activation", target:"3×15 reps, daily" },
+      { level:9, name:"Calf Stretch Series", desc:"Deep calf flexibility for ankle extension", target:"3×30s/leg post-workout" },
+      { level:10, name:"Complete Height Protocol", desc:"All techniques combined for maximum vertical growth", target:"Full daily routine" },
+    ]
+  },
+  anime: {
+    name: "Anime Physique (V-Taper)",
+    icon: "🔱",
+    color: T.green,
+    levels: [
+      { level:1, name:"Stomach Vacuum", desc:"Golden era waist — core vacuum for narrow midsection", target:"3×30s, daily" },
+      { level:2, name:"Archer Pull-Up", desc:"Unilateral pulling for V-taper development", target:"3×5 each side" },
+      { level:3, name:"Wide-Grip Pull-Up", desc:"Elbows to sides — maximum lat width", target:"4×10 reps" },
+      { level:4, name:"Commando Pull-Up", desc:"Alternating grip pull-up for back thickness", target:"3×8 reps" },
+      { level:5, name:"Handstand Push-Up", desc:"3D shoulder development — anterior & lateral delts", target:"3×8 reps" },
+      { level:6, name:"Pike Push-Up", desc:"Shoulder-focused pressing for cap development", target:"3×12 reps" },
+      { level:7, name:"Explosive Pull-Up", desc:"Explosive back power for demon physique", target:"4×6 reps" },
+      { level:8, name:"Front Lever Progression", desc:"Elite back thickness and core integration", target:"3×5-10s holds" },
+      { level:9, name:"Pseudo Planche Push-Up", desc:"Extreme chest and shoulder definition", target:"3×10 reps" },
+      { level:10, name:"Anime Physique Mastery", desc:"Full V-taper with anime villain aesthetics", target:"Advanced skill integration" },
+    ]
   }
 };
 
@@ -219,6 +253,7 @@ const QUESTIONS = [
     id:"primary_goal", type:"single", q:"Your #1 goal?", sub:"This shapes everything.",
     opts:[
       { v:"physique", l:"🔱 Aesthetic Physique", s:"V-taper, visible abs, proportional" },
+      { v:"anime", l:"🔱 Anime Physique", s:"V-taper, demon back, villain arms" },
       { v:"strength", l:"⚡ Raw Strength", s:"Compound power on the big lifts" },
       { v:"height", l:"📏 Maximize Height", s:"Posture, spine, growth protocols" },
       { v:"calisthenics", l:"🤸 Calisthenics Skills", s:"Handstands, L-SIT, front lever" },
@@ -544,6 +579,16 @@ Create a personalized 20-week system with 4 phases. Return ONLY valid JSON:
       exercises: exSets[i%exSets.length]
     }));
 
+    const makeHeightSchedule = (exSets) => dayNames.map((day,i)=>({
+      day, sessionName:["Decompression","Plyometrics","Stretching","Cardio","Mobility"][i%5],
+      exercises: exSets[i%exSets.length]
+    }));
+
+    const makeAnimeSchedule = (exSets) => dayNames.map((day,i)=>({
+      day, sessionName:["V-Taper Pull","Shoulder Press","Leg Power","Back Thickness","Core Waist"][i%5],
+      exercises: exSets[i%exSets.length]
+    }));
+
     const phase1Exs = [
       [
         {name: getExercises("pull")[0] || "Dead Hang", sets:3, reps:"5-8", rpe:"6", progression:"Add 1 rep per set each week", note:"Perfect form only"},
@@ -571,6 +616,56 @@ Create a personalized 20-week system with 4 phases. Return ONLY valid JSON:
         {name: "Deep Lunge Hold", sets:3, reps:"60s/side", rpe:"4", progression:"Arms overhead week 2", note:"Breathe into the hip"}
       ],
     ];
+
+    // Height-specific program
+    if(p.primary_goal === "height") {
+      const heightPhase1 = [
+        [{name: "Hanging Decompression", sets:3, reps:"30s", rpe:"3", progression:"Add 5s per week", note:"Reduce spinal compression"}, {name: "Cobra Stretch", sets:3, reps:"20s", rpe:"2", progression:"Add 5s per week", note:"Spinal flexibility"}, {name: "Downward Dog", sets:3, reps:"20s", rpe:"2", progression:"Add 5s per week", note:"Inversion & tension relief"}],
+        [{name: "Masai Jumps", sets:10, reps:"100 jumps", rpe:"7", progression:"Increase jump height", note:"Create micro-fractures"}, {name: "Calf Raises", sets:3, reps:"20 reps", rpe:"5", progression:"Add 5 reps per week", note:"Ankle extension work"}],
+        [{name: "Standing Reach Hold", sets:3, reps:"15 reps", rpe:"4", progression:"Add 5 reps per week", note:"Full-body elongation"}, {name: "Calf Stretch Series", sets:3, reps:"30s/leg", rpe:"3", progression:"Add 10s per week", note:"Deep calf flexibility"}],
+        [{name: "Sprinting Intervals", sets:5, reps:"20s", rpe:"8", progression:"Increase sprint intensity", note:"HGH stimulation"}, {name: "Cycling (High Seat)", sets:1, reps:"30-60 min", rpe:"5", progression:"Increase duration", note:"Mechanical stress for leg elongation"}],
+      ];
+      return {
+        programName:`${p.name}'s 20-Week Height Growth System`, tagline:"Grow taller through science.", primaryColor:"blue",
+        analysis:`Height growth protocol using Wolff's Law, spinal decompression, and HGH stimulation. Combines mechanical stress, plyometrics, and stretching over 4 phases.`,
+        keyInsight:"Consistency with decompression + plyometrics + stretching = measurable height gains.",
+        phases: PHASES.map((ph,pi)=>({
+          id:ph.id, name:ph.name, weeks:ph.weeks, focus:ph.focus, intensityPct:ph.intensity.split("–")[0].replace("%",""),
+          weeklySchedule: makeHeightSchedule(heightPhase1)
+        })),
+        fasciaProgression:{ phase1:["Hanging Decompression","Cobra Stretch"], phase2:["Hanging Decompression","Cobra Stretch","Downward Dog"], phase3:["Hanging Decompression","Masai Jumps","Sprinting Intervals"], phase4:["Hanging Decompression","Masai Jumps","Sprinting Intervals","Cycling (High Seat)","Ankle Weight Stretch"] },
+        milestones:[{week:4,title:"Foundation Complete",description:"Decompression routine established, form mastered"},{week:8,title:"Plyometric Phase",description:"Micro-fractures initiated, HGH stimulation active"},{week:12,title:"Growth Acceleration",description:"Noticeable posture improvement, spinal height gains"},{week:16,title:"Protocol Mastery",description:"Full height protocol integrated into daily life"},{week:20,title:"HEIGHT TRANSFORMATION",description:"20 weeks of consistent growth. Measure your progress."}],
+        morningRitual:[{name:"Hanging Decompression",duration:"3×30s",note:"Decompress spine before the day"},{name:"Cobra Stretch",duration:"3×20s",note:"Spinal flexibility activation"},{name:"Standing Reach Hold",duration:"3×15 reps",note:"Full-body elongation"},{name:"Mountain Pose",duration:"1 min",note:"Own your full height"}],
+        nutritionNote:"High protein (1g per lb), Vitamin D, Calcium, Boron for bone health. Avoid seed oils. Prioritize sleep before 10 PM for HGH release.",
+        sleepNote:"Peak HGH release: 10 PM–12 AM. Wear ankle weights (2-3kg) during sleep to create vertical stretch stimulus.",
+        weeklyStructure:`Your ${p.days}-day split alternates decompression, plyometrics, stretching, and cardio to maximize height growth potential.`
+      };
+    }
+
+    // Anime physique-specific program
+    if(p.primary_goal === "anime") {
+      const animePhase1 = [
+        [{name: "Stomach Vacuum", sets:3, reps:"30s", rpe:"3", progression:"Add 10s per week", note:"Golden era waist"}, {name: "Archer Pull-Up", sets:3, reps:"5 each side", rpe:"6", progression:"Add 1 rep per side", note:"Unilateral V-taper"}, {name: "Wide-Grip Pull-Up", sets:4, reps:"10 reps", rpe:"6", progression:"Add 2 reps per week", note:"Maximum lat width"}],
+        [{name: "Handstand Push-Up", sets:3, reps:"8 reps", rpe:"6", progression:"Add 1 rep per week", note:"3D shoulder development"}, {name: "Pike Push-Up", sets:3, reps:"12 reps", rpe:"5", progression:"Add 2 reps per week", note:"Shoulder cap focus"}, {name: "Pseudo Planche Push-Up", sets:3, reps:"10 reps", rpe:"6", progression:"Add 1 rep per week", note:"Extreme chest definition"}],
+        [{name: "Pistol Squat Progression", sets:3, reps:"8 each leg", rpe:"6", progression:"Increase depth", note:"Functional leg power"}, {name: "Explosive Jumping Squat", sets:4, reps:"8 reps", rpe:"7", progression:"Add 2 reps per week", note:"Athletic leg development"}],
+        [{name: "Commando Pull-Up", sets:3, reps:"8 reps", rpe:"6", progression:"Add 1 rep per week", note:"Back thickness"}, {name: "Front Lever Progression", sets:3, reps:"5-10s holds", rpe:"7", progression:"Increase hold time", note:"Elite back integration"}, {name: "Explosive Pull-Up", sets:4, reps:"6 reps", rpe:"7", progression:"Add 1 rep per week", note:"Demon back power"}],
+      ];
+      return {
+        programName:`${p.name}'s 20-Week Anime Physique System`, tagline:"Build the demon body.", primaryColor:"green",
+        analysis:`Anime physique protocol: V-taper back, 3D shoulders, narrow waist, and explosive legs. Progressive calisthenics for aesthetic mastery.`,
+        keyInsight:"V-taper + demon back + villain arms + low body fat = anime physique achieved.",
+        phases: PHASES.map((ph,pi)=>({
+          id:ph.id, name:ph.name, weeks:ph.weeks, focus:ph.focus, intensityPct:ph.intensity.split("–")[0].replace("%",""),
+          weeklySchedule: makeAnimeSchedule(animePhase1)
+        })),
+        fasciaProgression:{ phase1:["Stomach Vacuum","Archer Pull-Up"], phase2:["Stomach Vacuum","Archer Pull-Up","Wide-Grip Pull-Up"], phase3:["Stomach Vacuum","Commando Pull-Up","Front Lever Progression"], phase4:["Stomach Vacuum","Explosive Pull-Up","Front Lever Progression","Handstand Push-Up","Pseudo Planche Push-Up"] },
+        milestones:[{week:4,title:"Foundation Complete",description:"Form mastered on all V-taper exercises"},{week:8,title:"Back Width Gains",description:"Visible V-taper development, lat activation strong"},{week:12,title:"Physique Peak",description:"3D shoulders visible, back thickness impressive"},{week:16,title:"Demon Body Complete",description:"Full anime physique framework established"},{week:20,title:"ANIME TRANSFORMATION",description:"20 weeks in. You are the villain now."}],
+        morningRitual:[{name:"Stomach Vacuum",duration:"3×30s",note:"Activate core and narrow waist"},{name:"Archer Pull-Up Holds",duration:"3×10s each side",note:"V-taper activation"},{name:"Handstand Hold",duration:"3×20s",note:"Shoulder development prep"},{name:"Mountain Pose",duration:"1 min",note:"Own your V-taper"}],
+        nutritionNote:"1g protein per pound of bodyweight. Caloric deficit for low body fat to reveal definition. High carbs around training for explosive power.",
+        sleepNote:"Before 10 PM for peak HGH and muscle recovery. Anime physique requires quality sleep for muscle definition and recovery.",
+        weeklyStructure:`Your ${p.days}-day split focuses on V-taper (wide back, narrow waist), 3D shoulders, and explosive legs for anime character aesthetics.`
+      };
+    }
 
     return {
       programName:`${p.name}'s 20-Week APEX System`, tagline:"Four phases. One transformation.", primaryColor:"gold",
